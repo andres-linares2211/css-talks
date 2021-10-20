@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tipografía Escalable</title>
+  <link rel="stylesheet" href="clamp.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="slider">
+    <div class="slide slide--init">
+      <h2>Tipografía Escalable</h2>
+
+      <p>
+        Se considera como <strong>tipografía escalable</strong> aquella que se adapta al dispositivo donde se renderiza. <br><br>
+        Para lograrlo, hacemos uso de unidades relativas y funciones como <code>clamp</code>. Podemos hacerlo tambien con <b><code>Javascript</code></b>, pero hoy en día solo con <b><code>CSS</code></b> es suficiente.
+        <br><br><br>
+        Veamos un ejemplo<span id="spinnerPoints"></span>
+
+        <script>
+          const spinnerPoints = document.getElementById('spinnerPoints');
+          let points = 0;
+
+          setInterval(() => {
+            points = points % 6;
+            points++;
+
+            spinnerPoints.innerText = ".".repeat(points);
+          }, 350);
+        </script>
+      </p>
+    </div>
+
+    <div class="slide slide--1">
+      <h2>A lo natural</h2>
+
+      <p>
+        Estamos en el paso #1 y queremos que nuestro texto tenga un tamaño de <code>x pixeles</code>.
+        <br><br>
+        Revisemos como quedaría y ajustemos el contenedor.
+      </p>
+
+      <div class="playground">
+        Define el tamaño en px del texto:
+        <input type="number" min="1" max="200" value="16" id="pxInput">
+
+        <h4 id="title1">
+          Nuestro Omni.titulo
+        </h4>
+
+        <script>
+          const pxInput = document.getElementById('pxInput');
+          const title1 = document.getElementById('title1');
+
+          pxInput.addEventListener('input', () => {
+            title1.style.fontSize = pxInput.value + 'px';
+          })
+        </script>
+      </div>
+      <small>* No olvides redimensionar el contenedor para saber como se vería en otros dispositivos </small>
+    </div>
+  </div>
+</body>
+</html>
