@@ -12,6 +12,102 @@
 </head>
 <body>
   <div class="slider">
+    <div class="slide slide--init">
+      <h2>Tipos de unidades en CSS</h2>
+
+      <p>
+        Las unidades en CSS se clasifican en dos categorías: <b>Absolutas</b> y <b>Relativas</b>. <br><br>
+        Para más información sobre las distintas unidades, revisa la <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#lengths" target="_blank" rel="noopener noreferrer">Documentación sobre valores y unidades en CSS.</a>
+      </p>
+
+      <div class="units-container">
+        <div>
+          <h3>Absolutas</h3>
+          <ul>
+            <li>
+              <code>cm</code>
+              <div style="height: 2vh; width: 3cm; background: black;"></div>
+            </li>
+
+            <li>
+              <code>mm</code>
+              <div style="height: 2vh; width: 3mm; background: black;"></div>
+            </li>
+
+            <li>
+              <code>Q</code>
+              <div style="height: 2vh; width: 3Q; background: black;"></div>
+            </li>
+
+            <li>
+              <code>in</code>
+              <div style="height: 2vh; width: 3in; background: black;"></div>
+            </li>
+
+            <li>
+              <code>pc</code>
+              <div style="height: 2vh; width: 3pc; background: black;"></div>
+            </li>
+
+            <li>
+              <code>pt</code>
+              <div style="height: 2vh; width: 3pt; background: black;"></div>
+            </li>
+
+            <li>
+              <code>px</code>
+              <div style="height: 2vh; width: 3px; background: black;"></div>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Relativas</h3>
+          <ul>
+            <li>
+              <code>em</code>
+              <div style="height: 2vh; width: 5em; background: black;"></div>
+            </li>
+
+            <li>
+              <code>ex</code>
+              <div style="height: 2vh; width: 5ex; background: black;"></div>
+            </li>
+
+            <li>
+              <code>ch</code>
+              <div style="height: 2vh; width: 5ch; background: black;"></div>
+            </li>
+
+            <li>
+              <code>rem</code>
+              <div style="height: 2vh; width: 5rem; background: black;"></div>
+            </li>
+
+            <li>
+              <code>vw</code>
+              <div style="height: 2vh; width: 5vw; background: black;"></div>
+            </li>
+
+            <li>
+              <code>vh</code>
+              <div style="height: 2vh; width: 5vh; background: black;"></div>
+            </li>
+
+            <li>
+              <code>vmin</code>
+              <div style="height: 2vh; width: 5vmin; background: black;"></div>
+            </li>
+
+            <li>
+              <code>vmax</code>
+              <div style="height: 2vh; width: 5vmax; background: black;"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
     <div class="slide slide--px">
       <h2>PX</h2>
       <p>
@@ -59,7 +155,7 @@
         <script>
           const inputRem = document.getElementById('remInput');
 
-          inputRem.addEventListener('change', () => {
+          inputRem.addEventListener('input', () => {
             const root = document.querySelector(':root');
 
             root.style.fontSize = inputRem.value + 'px';
@@ -88,7 +184,7 @@
           const inputEm = document.getElementById('emInput');
           const omniBox = document.getElementById('omniBox');
 
-          inputEm.addEventListener('change', () => {
+          inputEm.addEventListener('input', () => {
             omniBox.style.fontSize = inputEm.value + 'px';
           });
         </script>
@@ -116,12 +212,63 @@
           const inputCh = document.getElementById('chInput');
           const chText = document.getElementById('chText');
 
-          inputCh.addEventListener('change', () => {
+          inputCh.addEventListener('input', () => {
             chText.style.maxWidth = inputCh.value + 'ch';
           });
         </script>
       </div>
       <small>*En fuentes no <code>monospace</code> la cantidad de caracteres puede no ser exacta.</small>
+    </div>
+
+    <div class="slide slide--vw">
+      <h2>VW</h2>
+      <p>
+        Corresponde con el ancho de la pantalla (<i>viewport</i>). <br><br>
+        <code>1vw</code> es igual al <code>1%</code> del <i>viewport width</i>. Es util para diseños escalables que se ajustan al dispositivo.
+      </p>
+
+      <div class="playground">
+        Ajusta el tamaño del circulo:
+        <input type="number" min="1" max="100" value="10" id="vwInput">
+
+        <div class="circle" id="circle"></div>
+
+        <script>
+          const inputVw = document.getElementById('vwInput');
+          const circle = document.getElementById('circle');
+
+          inputVw.addEventListener('input', () => {
+            circle.style.width = inputVw.value + 'vw';
+            circle.style.height = inputVw.value + 'vw';
+          });
+        </script>
+      </div>
+      <small>* Acuerdate que hay pantallas delgadas (smartphones) y pantallas muy anchas (super ultra wide).</small>
+    </div>
+
+    <div class="slide slide--vh">
+      <h2>VH</h2>
+      <p>
+        Corresponde con el alto de la pantalla (<i>viewport</i>). <br><br>
+        <code>1vh</code> es igual al <code>1%</code> del <i>viewport height</i>. Es util para diseños escalables que se ajustan al dispositivo.
+      </p>
+
+      <div class="playground">
+        Ajusta el tamaño del rectangulo:
+        <input type="number" min="1" max="100" value="10" id="vhInput">
+
+        <div class="rect" id="rect"></div>
+
+        <script>
+          const inputVh = document.getElementById('vhInput');
+          const rect = document.getElementById('rect');
+
+          inputVh.addEventListener('input', () => {
+            rect.style.height = inputVh.value + 'vh';
+          });
+        </script>
+      </div>
+      <small>* Intenta redimensionar el alto de tu pantalla usando <i>dev tools</i>.</small>
     </div>
   </div>
 </body>
