@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Units</title>
+  <link rel="stylesheet" href="units.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="slider">
+    <div class="slide slide--px">
+      <h2>PX</h2>
+      <p>
+        El px es la unidad de CSS <b>más comunmente usada.</b><br><br>
+        Es una unidad absoluta y no corresponde directamente a un <i>pixel físico</i>. También es la más fácil de usar y no requiere mayores conocimientos o formulas.
+      </p>
+      
+      <div class="playground">
+        <p>Ajusta el ancho del contenedor:</p>
+
+        <div id="widthBox" contenteditable="true" class="box">
+          100
+        </div>
+
+        <script>
+          const widthBox = document.getElementById('widthBox');
+          let timeout;
+
+          widthBox.addEventListener('input', () => {
+            if (timeout) clearTimeout(timeout);
+
+            timeout = setTimeout(() => {
+              widthBox.style.width = widthBox.innerText.trim() + 'px';
+              console.log('aja')
+            }, 500);
+          })
+        </script>
+      </div>
+
+      <small>* Intenta abriendo esta página en distintos dispositivos y pantallas.</small>
+    </div>
+
+    <div class="slide slide--rem">
+      <h2>REM</h2>
+      <p>
+        Corresponde directamente con el <code>font-size</code> del elemento raíz.<br><br>
+        
+        Por defecto, este tamaño es <code>16px</code> en la mayoría de navegadores. Aunque puede ser configurado por el usuario o el desarrollador según las necesidades.
+      </p>
+
+      <div class="playground">
+        <p>Cambia el <code>font-size</code> del elemento raíz:</p>
+        <input type="number" min="5" max="50" value="16" id="remInput">
+
+        <script>
+          const inputRem = document.getElementById('remInput');
+
+          inputRem.addEventListener('blur', () => {
+            const root = document.querySelector(':root');
+
+            root.style.fontSize = inputRem.value + 'px';
+          });
+        </script>
+      </div>
+
+      <small>* No afecta a los elementos que usan px</small>
+    </div>
+
+    <div class="slide slide--em">
+      <h2>EM</h2>
+      <p>
+        Corresponde con el <code>font-size</code> del elemento padre o del elemento mismo.<br><br>
+        Es util cuando necesitamos que un elemento se adapte a su contenido (<i>un padding de acuerdo al <code>font-size</code></i>).
+      </p>
+
+      <div class="playground">
+        <p>Cambia el <code>font-size</code> del contenedor:</p>
+        <input type="number" min="5" max="100" value="16" id="emInput">
+        <div class="omni-box" id="omniBox">
+          Omni.pro
+        </div>
+
+        <script>
+          const inputEm = document.getElementById('emInput');
+          const omniBox = document.getElementById('omniBox');
+
+          inputEm.addEventListener('blur', () => {
+            omniBox.style.fontSize = inputEm.value + 'px';
+          });
+        </script>
+      </div>
+      <small>* Ten cuidado al usar <code>font-size</code> con unidades <code>em</code></small>
+    </div>
+
+    <div class="slide slide--ch">
+      <h2>CH</h2>
+      <p>
+        Es una unidad comunmente usada para <b>largos</b> fragmentos de texto.<br><br>
+        Se ve principalmente en sitios como noticias, blogs, artículos y corresponde con el ancho del caracter "<code>0</code>".
+      </p>
+
+      <div class="playground">
+        <p>Ajusta el ancho en <code>ch</code> del siguiente texto:</p>
+        <input type="number" min="10" max="160" value="60" id="chInput">
+
+        <p class="ch-text" id="chText">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero beatae ea repellat, sint excepturi accusamus voluptatum mollitia modi ipsa saepe, facere, et commodi aspernatur eligendi sunt possimus praesentium quaerat quas.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti optio soluta ratione provident reprehenderit, perferendis consequuntur nihil! Sunt libero quam, ducimus facere temporibus pariatur quos natus error quae! Alias, laboriosam!
+        </p>
+
+        <script>
+          const inputCh = document.getElementById('chInput');
+          const chText = document.getElementById('chText');
+
+          inputCh.addEventListener('blur', () => {
+            chText.style.maxWidth = inputCh.value + 'ch';
+          });
+        </script>
+      </div>
+      <small>*En fuentes no <code>monospace</code> la cantidad de caracteres puede no ser exacta.</small>
+    </div>
+  </div>
+</body>
+</html>
