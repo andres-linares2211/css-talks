@@ -59,7 +59,7 @@
         <script>
           const inputRem = document.getElementById('remInput');
 
-          inputRem.addEventListener('blur', () => {
+          inputRem.addEventListener('change', () => {
             const root = document.querySelector(':root');
 
             root.style.fontSize = inputRem.value + 'px';
@@ -88,7 +88,7 @@
           const inputEm = document.getElementById('emInput');
           const omniBox = document.getElementById('omniBox');
 
-          inputEm.addEventListener('blur', () => {
+          inputEm.addEventListener('change', () => {
             omniBox.style.fontSize = inputEm.value + 'px';
           });
         </script>
@@ -116,7 +116,7 @@
           const inputCh = document.getElementById('chInput');
           const chText = document.getElementById('chText');
 
-          inputCh.addEventListener('blur', () => {
+          inputCh.addEventListener('change', () => {
             chText.style.maxWidth = inputCh.value + 'ch';
           });
         </script>
