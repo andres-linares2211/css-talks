@@ -45,7 +45,7 @@
       </p>
 
       <div class="playground">
-        Define el tamaño en px del texto:
+        <p>Define el tamaño en px del texto:</p>
         <input type="number" min="1" max="200" value="16" id="pxInput">
 
         <h4 id="title1">
@@ -62,6 +62,43 @@
         </script>
       </div>
       <small>* No olvides redimensionar el contenedor para saber como se vería en otros dispositivos </small>
+    </div>
+
+    <div class="slide slide--2">
+      <h2>Usando unidades relativas</h2>
+
+      <p>
+        En nuestro anterior ejemplo, el tamaño de nuestro titulo se ve bien solo en un rango de resoluciones... <br><br>
+        Si queremos que sea escalable, debemos lograr que se vea bien en dispositivos pequeños como grandes. <br>
+        Recordando las unidades relativas, vamos a usar la unidad <code>vw</code>.
+      </p>
+
+      <div class="playground" id="playground2">
+        <p>Define el tamaño del texto en vw:</p>
+
+        <input type="number" min="1" max="100" value="2" id="vwInput" step="0.1">
+
+        <h4 id="title2">
+          Nuestro Omni.titulo
+        </h4>
+
+        <script>
+          const vwInput = document.getElementById('vwInput');
+          const title2 = document.getElementById('title2');
+          const playground2 = document.getElementById('playground2');
+
+          title2.style.fontSize = (playground2.clientWidth * (+vwInput.value) / 100) + 'px';
+
+          vwInput.addEventListener('input', () => {
+            title2.style.fontSize = (playground2.clientWidth * (+vwInput.value) / 100) + 'px';
+          })
+
+          new ResizeObserver(() => {
+            title2.style.fontSize = (playground2.clientWidth * (+vwInput.value) / 100) + 'px';
+          }).observe(playground2);
+        </script>
+      </div>
+      <small>* Para simular <code>vw</code> estamos usando un % del ancho del contenedor.</small>
     </div>
   </div>
 </body>
