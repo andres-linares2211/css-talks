@@ -100,6 +100,61 @@
       </div>
       <small>* Para simular <code>vw</code> estamos usando un % del ancho del contenedor.</small>
     </div>
+
+    <div class="slide slide--3">
+      <h2>Usando media queries</h2>
+
+      <p>
+        En el ejemplo #2 vemos que seguimos con el mismo problema... <br><br>
+        Para resoluciones pequeñas se ve muy pequeño y para resoluciones grandes se ve muy grande. <br>
+        Intentemos con los media queries, seguro será más fácil.
+      </p>
+
+      <div class="playground" id="playground3">
+        <p>Define el tamaño del texto en px para mobile y desktop:</p>
+        
+        <div style="display: flex; column-gap: 1rem;">
+          <input type="number" min="5" max="200" value="20" id="mobileInput">
+          <input type="number" min="5" max="200" value="30" id="desktopInput">
+        </div>
+
+        <h4 id="title3">
+          Nuestro Omni.titulo
+        </h4>
+
+        <script>
+          const mobileInput = document.getElementById('mobileInput');
+          const desktopInput = document.getElementById('desktopInput');
+          const title3 = document.getElementById('title3');
+          const playground3 = document.getElementById('playground3');
+
+          mobileInput.addEventListener('input', () => {
+            if (playground3.clientWidth < 769) {
+              title3.style.fontSize = mobileInput.value + 'px';
+            } else {
+              title3.style.fontSize = desktopInput.value + 'px';
+            }
+          });
+
+          desktopInput.addEventListener('input', () => {
+            if (playground3.clientWidth < 769) {
+              title3.style.fontSize = mobileInput.value + 'px';
+            } else {
+              title3.style.fontSize = desktopInput.value + 'px';
+            }
+          });
+
+          new ResizeObserver(() => {
+            if (playground3.clientWidth < 769) {
+              title3.style.fontSize = mobileInput.value + 'px';
+            } else {
+              title3.style.fontSize = desktopInput.value + 'px';
+            }
+          }).observe(playground3);
+        </script>
+      </div>
+      <small>* Es necesario tener una resolución horizontal de al menos 800px para este ejemplo.</small>
+    </div>
   </div>
 </body>
 </html>
