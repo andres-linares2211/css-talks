@@ -144,6 +144,64 @@
       </div>
       <small>* Es necesario tener una resolución horizontal de al menos 800px para este ejemplo.</small>
     </div>
+
+    <div class="slide slide--4">
+      <h2>Usando la función clamp de CSS</h2>
+
+      <p>
+        En el <b>ejemplo #3</b> aún tenemos un problema y es que existe un salto brusco en la resolución que usamos para el <code>media query</code>. También es posible que el <code>font-size</code> no sea el que querramos cuando estamos cerca al <code>media query</code><span class="loading-dots"></span>
+        <br><br>
+        Para solucionar este problema, podemos hacer uso de la función <code>clamp</code>!
+        <br>
+        Se ve algo así: <code>font-size: clamp(1.5rem, 2vw, 3rem);</code>.
+        <br>
+      </p>
+
+      <div class="playground" id="playground4">
+        <p>Define el valor mínimo, deseado y máximo del texto (px, vw, px):</p>
+        
+        <div style="display: flex; column-gap: 1rem;">
+          <input type="number" min="5" max="200" value="16" id="minInput">
+          <input type="number" min="1" max="50" value="2" step="0.1" id="avgInput">
+          <input type="number" min="5" max="200" value="32" id="maxInput">
+        </div>
+
+        <h4 id="title4">
+          Nuestro Omni.titulo
+        </h4>
+
+        <script>
+          const minInput = document.getElementById('minInput');
+          const avgInput = document.getElementById('avgInput');
+          const maxInput = document.getElementById('maxInput');
+          const playground4 = document.getElementById('playground4');
+          const title4 = document.getElementById('title4');
+
+          const updateFontSize = () => {
+            const containerWidth = playground4.clientWidth;
+            const minFontSize = +minInput.value; // px
+            const avgFontSize = +avgInput.value; // vw (% del contenedor)
+            const maxFontSize = +maxInput.value; // px
+
+            const expectedFontSize = containerWidth * avgFontSize / 100;
+            
+            if (expectedFontSize <= minFontSize) {
+              title4.style.fontSize = minFontSize + 'px';
+            } else if (expectedFontSize >= maxFontSize) {
+              title4.style.fontSize = maxFontSize + 'px';
+            } else {
+              title4.style.fontSize = expectedFontSize + 'px';
+            }
+          }
+
+          minInput.addEventListener('input', updateFontSize);
+          avgInput.addEventListener('input', updateFontSize);
+          maxInput.addEventListener('input', updateFontSize);
+          new ResizeObserver(updateFontSize).observe(playground4);
+        </script>
+      </div>
+      <small>* Estamos haciendo uso de JS para simular el comportamiento de CSS. Pruebalo tú con CSS</small>
+    </div>
   </div>
 </body>
 </html>
