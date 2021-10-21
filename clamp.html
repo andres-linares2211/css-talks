@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tipografía Escalable</title>
   <link rel="stylesheet" href="clamp.css">
+  <script src="utils.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
@@ -19,19 +20,7 @@
         Se considera como <strong>tipografía escalable</strong> aquella que se adapta al dispositivo donde se renderiza. <br><br>
         Para lograrlo, hacemos uso de unidades relativas y funciones como <code>clamp</code>. Podemos hacerlo tambien con <b><code>Javascript</code></b>, pero hoy en día solo con <b><code>CSS</code></b> es suficiente.
         <br><br><br>
-        Veamos un ejemplo<span id="spinnerPoints"></span>
-
-        <script>
-          const spinnerPoints = document.getElementById('spinnerPoints');
-          let points = 0;
-
-          setInterval(() => {
-            points = points % 6;
-            points++;
-
-            spinnerPoints.innerText = ".".repeat(points);
-          }, 350);
-        </script>
+        Veamos un ejemplo<span class="loading-dots"></span>
       </p>
     </div>
 
@@ -68,7 +57,7 @@
       <h2>Usando unidades relativas</h2>
 
       <p>
-        En nuestro anterior ejemplo, el tamaño de nuestro titulo se ve bien solo en un rango de resoluciones... <br><br>
+        En nuestro anterior ejemplo, el tamaño de nuestro titulo se ve bien solo en un rango de resoluciones<span class="loading-dots"></span> <br><br>
         Si queremos que sea escalable, debemos lograr que se vea bien en dispositivos pequeños como grandes. <br>
         Recordando las unidades relativas, vamos a usar la unidad <code>vw</code>.
       </p>
@@ -105,7 +94,7 @@
       <h2>Usando media queries</h2>
 
       <p>
-        En el ejemplo #2 vemos que seguimos con el mismo problema... <br><br>
+        En el ejemplo #2 vemos que seguimos con el mismo problema<span class="loading-dots"></span> <br><br>
         Para resoluciones pequeñas se ve muy pequeño y para resoluciones grandes se ve muy grande. <br>
         Intentemos con los media queries, seguro será más fácil.
       </p>
